@@ -1,20 +1,33 @@
 import { calculate } from "../..";
 import { toBeEvalResult } from "../config/toBeEvalResult";
 
-beforeEach(() => {
+beforeAll(() => {
   expect.extend({ toBeEvalResult });
 });
 
-// prettier-ignore
-describe.each([
-  "55", "19", "99",
-  "127", "234", "111",
-  "1234", "1199", "1378", "1111",
-  "12345", "18888", "11111"
-])("calculate()", (input) => {
-  test(`${input}`, () => {
-    for (const ans of calculate(input.split(""))){
+describe("2 桁 の make10 の答え", () => {
+  test("5,5 -> [5+5] -> 10", () => {
+    for (const ans of calculate(["5", "5"])) {
       expect(ans).toBeEvalResult(10);
     }
   });
+  test("答えが存在しないとき", () => expect(calculate(["0", "0"])).toEqual([]));
+});
+
+describe("4 桁 の make10 の答え", () => {
+  test("1,1,9,9 -> [1+(1+(1/9)), ...] -> 10", () => {
+    for (const ans of calculate(["1", "1", "9", "9"])) {
+      expect(ans).toBeEvalResult(10);
+    }
+  });
+  test("答えが存在しないとき", () => expect(calculate(["0", "0", "0", "0"])).toEqual([]));
+});
+
+describe("5 桁 の make10 の答え", () => {
+  test("1,8,8,8,8 -> [(((1+8)*8)+8)/8, ...] -> 10", () => {
+    for (const ans of calculate(["1", "8", "8", "8", "8"])) {
+      expect(ans).toBeEvalResult(10);
+    }
+  });
+  test("答えが存在しないとき", () => expect(calculate(["0", "0", "0", "0", "0"])).toEqual([]));
 });
