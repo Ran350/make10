@@ -1,4 +1,4 @@
-import { calculate } from "./calculate/calculate";
+import { calculate } from ".";
 
 console.log(calculate(["1", "2", "3", "4"]));
 // -> [ "((1+2)+3)+4", "((1+2)+4)+3", "(3+4)+(1+2)",
