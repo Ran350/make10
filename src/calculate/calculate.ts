@@ -17,12 +17,13 @@ export const calculate: (fourDigitsNum: string[]) => string[] = (fourDigitsNum) 
   const rpn10 = rpns.filter((rpn) => {
     const result = calculateRpn(rpn);
     if (result === undefined) return false;
-    const TOLERANCE = 10 ** -6;
+    const TOLERANCE = 10 ** -8;
     return Math.abs(result - 10) < TOLERANCE;
   });
 
   // RPN -> 中置記法 変換
   const infixes = rpn10.map((rpn) => rpn2infix(rpn));
+  const result = Array.from(new Set(infixes));
 
-  return infixes;
+  return result;
 };

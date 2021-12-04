@@ -63,5 +63,5 @@ export const allCombinations: (nums: string[]) => string[] = (nums) => {
   const ans = combs.flat();
 
   // 重複削除
-  return Array.from(new Set<string>(ans));
+  return Array.from(new Set(ans));
 };
