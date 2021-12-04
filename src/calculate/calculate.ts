@@ -1,5 +1,6 @@
+import { calculateRpn } from "./calculateRpn";
 import { allCombinations } from "./combination";
-import { calculateRpn, rpn2infix } from "./rpn";
+import { rpn2infix } from "./rpn2infix";
 
 /**
  * @description make10 を解き，答えの組み合わせを全て返す
