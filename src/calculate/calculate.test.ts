@@ -1,5 +1,5 @@
-import { calculate } from "../..";
-import { toBeEvalResult } from "../config/toBeEvalResult";
+import { calculate } from "./calculate";
+import { toBeEvalResult } from "../test/config/toBeEvalResult";
 
 beforeAll(() => {
   expect.extend({ toBeEvalResult });
