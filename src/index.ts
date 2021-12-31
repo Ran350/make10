@@ -1,1 +1,1 @@
-export { calculate } from "./calculate/calculate";
+export { make10 as calculate } from "./calculate/calculate";

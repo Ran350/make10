@@ -3,7 +3,7 @@
  * @param "1 2 + 3 + 4 +"
  * @returns "((1+2)+3)+4"
  */
-export const rpn2infix = (rpn: string): string => {
+export function rpn2infix(rpn: string): string {
   const stack: string[] = [];
 
   const operators = ["+", "-", "*", "/"];
@@ -22,4 +22,4 @@ export const rpn2infix = (rpn: string): string => {
   const result = stack.pop();
   if (result === undefined) return "";
   return result.slice(1, -1);
-};
+}

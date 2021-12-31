@@ -1,18 +1,8 @@
-const eval2 = (a: number, operator: string, b: number): number | undefined => {
-  if (operator === "+") return a + b;
-  if (operator === "-") return a - b;
-  if (operator === "*") return a * b;
-  if (operator === "/") {
-    if (b === 0) return;
-    return a / b;
-  }
-};
-
 /**
  * @description RPN を計算
  * @returns 計算結果 or 不適切な入力なら undefined
  */
-export const calculateRpn = (rpn: string): number | undefined => {
+export function calculateRpn(rpn: string): number | undefined {
   const stack: number[] = [];
 
   const operators = ["+", "-", "*", "/"];
@@ -24,7 +14,7 @@ export const calculateRpn = (rpn: string): number | undefined => {
       const a = stack.pop();
       if (a === undefined || b === undefined) return;
 
-      const result = eval2(a, str, b);
+      const result = calc(a, str, b);
       if (result === undefined) return;
 
       stack.push(result);
@@ -34,4 +24,14 @@ export const calculateRpn = (rpn: string): number | undefined => {
   }
 
   return stack.pop();
-};
+}
+
+function calc(a: number, operator: string, b: number): number | undefined {
+  if (operator === "+") return a + b;
+  if (operator === "-") return a - b;
+  if (operator === "*") return a * b;
+  if (operator === "/") {
+    if (b === 0) return;
+    return a / b;
+  }
+}

@@ -4,15 +4,16 @@ import { rpn2infix } from "./rpn2infix";
 
 /**
  * @description make10 を解き，答えの組み合わせを全て返す
- * @param ["1","2","3","4"]
- * @returns ["((1+2)+3)+4", ...]
+ * @param inputs make10 puzzle の入力
+ * @param isSafe 処理時間のかからない入力 (2 <= digit <= 5) のみ許容するか
+ * @example ["1","2","3","4"] -> ["((1+2)+3)+4", ...]
  */
-export const calculate: (fourDigitsNum: string[]) => string[] = (fourDigitsNum) => {
-  if (fourDigitsNum.length <= 1 || 6 <= fourDigitsNum.length) {
+export function make10(inputs: string[], isSafe = true): string[] {
+  if (isSafe && (inputs.length <= 1 || 6 <= inputs.length)) {
     throw new Error("The length of the argument array must be '2 <= len <= 5'");
   }
 
-  const rpns: string[] = allCombinations(fourDigitsNum);
+  const rpns = allCombinations(inputs);
 
   // 結果が 10 になる RPN 式のみ
   const rpn10 = rpns.filter((rpn) => {
@@ -27,4 +28,4 @@ export const calculate: (fourDigitsNum: string[]) => string[] = (fourDigitsNum) 
   const result = Array.from(new Set(infixes));
 
   return result;
-};
+}
