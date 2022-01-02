@@ -3,19 +3,24 @@ import { allCombinations } from "./lib/combination";
 import { rpn2infix } from "./lib/rpn2infix";
 
 /**
- * @description make10 を解き，答えの組み合わせを全て返す
- * @param inputs make10 puzzle の入力
- * @param isSafe 処理時間のかからない入力 (2 <= digit <= 5) のみ許容するか
+ * @description solve make10 and return all answers
+ * @param inputs Numeric value of type string
+ * @param allowableHugeTimeComplexity false: throw the error when inputs.length is not [2,5].
  * @example ["1","2","3","4"] -> ["((1+2)+3)+4", ...]
  */
-export function make10(inputs: string[], isSafe = true): string[] {
-  if (isSafe && (inputs.length <= 1 || 6 <= inputs.length)) {
+export function make10(inputs: string[], allowableHugeTimeComplexity = false): string[] {
+  if (!allowableHugeTimeComplexity && (inputs.length <= 1 || 6 <= inputs.length)) {
     throw new Error("The length of the argument array must be '2 <= len <= 5'");
   }
 
+  if (inputs.some((i) => !/\d+/.test(i))) {
+    throw new Error("inputs must be numeric value");
+  }
+
+  // (1) all combinations
   const rpns = allCombinations(inputs);
 
-  // 結果が 10 になる RPN 式のみ
+  // (2) only RPN expressions whose result is 10
   const rpn10 = rpns.filter((rpn) => {
     const result = calculateRpn(rpn);
     if (result === undefined) return false;
@@ -23,7 +28,7 @@ export function make10(inputs: string[], isSafe = true): string[] {
     return Math.abs(result - 10) < TOLERANCE;
   });
 
-  // RPN -> 中置記法 変換
+  // (3) RPN -> infix notation
   const infixes = rpn10.map((rpn) => rpn2infix(rpn));
   const result = Array.from(new Set(infixes));
 
