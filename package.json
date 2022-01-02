@@ -1,7 +1,7 @@
 {
   "name": "@ran350/make10",
   "description": "library solving make 10 puzzle",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "Ran350"
   },
