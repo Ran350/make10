@@ -22,7 +22,7 @@ export function allCombinations(nums: string[]): string[] {
  * @returns [[true,true,false],[true,false,true],[false,true,true]]
  */
 function nC2(num: number): boolean[][] {
-  let flags: boolean[][] = [];
+  const flags: boolean[][] = [];
 
   for (let i = 0; i < num - 1; i++) {
     for (let j = i + 1; j < num; j++) {
