@@ -1,4 +1,12 @@
+<div align="center">
+
 # make10
+
+[![GitHub version](https://badge.fury.io/gh/ran350%2Fmake10.svg)](https://badge.fury.io/gh/ran350%2Fmake10)
+![Code Check](https://github.com/Ran350/make10/workflows/CI/badge.svg)
+
+</div>
+
 the npm library that solving `Make 10 Puzzle`
 > `Make 10 Puzzle` is the game that making 10 through using only 4 numbers and +－×÷.
 
