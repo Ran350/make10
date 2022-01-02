@@ -1,5 +1,5 @@
-import { make10 } from "./calculate";
-import { toBeEvalResult } from "../test/config/toBeEvalResult";
+import { make10 } from ".";
+import { toBeEvalResult } from "./test/config/toBeEvalResult";
 
 beforeAll(() => {
   expect.extend({ toBeEvalResult });
